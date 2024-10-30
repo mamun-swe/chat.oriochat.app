@@ -1,5 +1,6 @@
 package chat.oriochat.app.dto;
 
+import chat.oriochat.app.model.ChatMessage;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -9,21 +10,17 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ChatMessageDTO {
-    public enum MessageType {
-        CHAT, JOIN, LEAVE
-    }
-
     private Long id;
 
-    @NotBlank(message = "Sender name is required.")
-    private String name;
-
     @NotNull(message = "Sender id is required.")
-    private Long sender;
+    private Long senderId;
+
+    @NotBlank(message = "Sender name is required.")
+    private String senderName;
 
     @NotBlank(message = "Room number is required.")
     private String room;
-    private MessageType type;
+    private ChatMessage.MessageType type;
 
     @NotBlank(message = "Message content is required.")
     @Size(max = 256, message = "Message must not exceed 256 characters.")
