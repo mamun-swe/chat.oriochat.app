@@ -1,4 +1,4 @@
-# Compile the App and move the JAR executable file to the root folder under runnable.jar
+#!/bin/sh
 
 rm -f *.jar
 ./mvnw clean install -DskipTests
