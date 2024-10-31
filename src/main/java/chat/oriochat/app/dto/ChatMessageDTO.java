@@ -7,6 +7,9 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Getter
 @Setter
 public class ChatMessageDTO {
@@ -25,4 +28,20 @@ public class ChatMessageDTO {
     @NotBlank(message = "Message content is required.")
     @Size(max = 256, message = "Message must not exceed 256 characters.")
     private String content;
+
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+
+    // Custom date-time format
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+
+    // Return createdAt as a formatted String
+    public String getCreatedAt() {
+        return createdAt != null ? createdAt.format(FORMATTER) : null;
+    }
+
+    // Return updatedAt as a formatted String
+    public String getUpdatedAt() {
+        return updatedAt != null ? updatedAt.format(FORMATTER) : null;
+    }
 }

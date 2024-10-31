@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -98,6 +99,8 @@ public class SocketIOService {
             dto.setRoom(message.getRoom());
             dto.setType(message.getType());
             dto.setContent(message.getContent());
+            dto.setCreatedAt(message.getCreatedAt());
+            dto.setUpdatedAt(message.getUpdatedAt());
             return dto;
         }).toList();
 
@@ -110,6 +113,8 @@ public class SocketIOService {
         welcomeMessage.setRoom(roomId);
         welcomeMessage.setType(ChatMessage.MessageType.JOIN);
         welcomeMessage.setContent("Welcome to room! Enjoy the chat.");
+        welcomeMessage.setCreatedAt(LocalDateTime.now());
+        welcomeMessage.setUpdatedAt(LocalDateTime.now());
         chatMessages.addLast(welcomeMessage);
 
         // Broadcast welcome message to the new joiner
@@ -122,6 +127,8 @@ public class SocketIOService {
         notifyMessage.setRoom(roomId);
         notifyMessage.setType(ChatMessage.MessageType.JOIN);
         notifyMessage.setContent(messageDTO.getSenderName() + " has joined the room!");
+        notifyMessage.setCreatedAt(LocalDateTime.now());
+        notifyMessage.setUpdatedAt(LocalDateTime.now());
         chatMessages.clear();
         chatMessages.add(notifyMessage);
 
@@ -162,6 +169,8 @@ public class SocketIOService {
         notifyMessage.setRoom(roomId);
         notifyMessage.setType(ChatMessage.MessageType.LEAVE);
         notifyMessage.setContent(messageDTO.getSenderName() + " has leave the room!");
+        notifyMessage.setCreatedAt(LocalDateTime.now());
+        notifyMessage.setUpdatedAt(LocalDateTime.now());
 
         chatMessages.clear();
         chatMessages.add(notifyMessage);
@@ -202,6 +211,8 @@ public class SocketIOService {
         message.setRoom(roomId);
         message.setType(ChatMessage.MessageType.CHAT);
         message.setContent(messageDTO.getContent());
+        message.setCreatedAt(LocalDateTime.now());
+        message.setUpdatedAt(LocalDateTime.now());
 
         // Store message to the database
         chatMessageService.createMessage(message);
