@@ -4,8 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: orio-chat-service-image
-    container_name: orio-chat-service-container
+    image: spring.chat.service
+    container_name: spring.chat.service
     ports:
       - "8090:8090"
       - "8092:8092"
@@ -19,24 +19,24 @@ services:
       - SPRING_SOCKET_IO_HOST=0.0.0.0
       - SPRING_SOCKET_IO_PORT=8092
     networks:
-      - oriochat-springboot-mysql-network
+      - spring-chat-service-network
   mysqldb:
     image: mysql:latest
-    container_name: orio-chat-service-db-container
+    container_name: spring.chat.service.db
     environment:
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
     volumes:
-      - oriochat-springboot-mysql-data:/var/lib/mysql
+      - spring-chat-service-data:/var/lib/mysql
     networks:
-      - oriochat-springboot-mysql-network
+      - spring-chat-service-network
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       retries: 10
       interval: 3s
       timeout: 30s
 volumes:
-  oriochat-springboot-mysql-data:
+  spring-chat-service-data:
 networks:
-  oriochat-springboot-mysql-network:
-    name: oriochat-springboot-mysql-network
+  spring-chat-service-network:
+    name: spring-chat-service-network

@@ -46,8 +46,10 @@ public class GlobalExceptionHandler {
 
         // Add the error message as an array in the errors map
         errors.computeIfAbsent("server", key -> new java.util.ArrayList<>()).add("Something going wrong!");
-        response.put("errors", errors);
+//        response.put("errors", errors);
 
+        System.out.print(ex.getMessage());
+        response.put("errors", ex.getMessage());
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
