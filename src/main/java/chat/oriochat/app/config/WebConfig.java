@@ -16,9 +16,9 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("*")
-                        .allowedMethods("*")
-                        .allowedHeaders("*")
+                        .allowedOrigins("http://localhost:3000") // Replace with the correct origin of your frontend app
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Add all necessary methods
+                        .allowedHeaders("Authorization", "Content-Type", "Accept") // Allow headers like Authorization
                         .allowCredentials(true);
             }
         };
