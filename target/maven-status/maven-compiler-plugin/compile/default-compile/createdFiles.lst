@@ -18,4 +18,3 @@ chat/oriochat/app/exception/ChatMessageValidator.class
 chat/oriochat/app/controller/RoomController.class
 chat/oriochat/app/filters/JwtTokenFilter.class
 chat/oriochat/app/config/WebConfig.class
-chat/oriochat/app/config/WebConfig$1.class
