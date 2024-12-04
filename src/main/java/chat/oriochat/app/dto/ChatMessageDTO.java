@@ -21,8 +21,8 @@ public class ChatMessageDTO {
     @NotBlank(message = "Sender name is required.")
     private String senderName;
 
-    @NotBlank(message = "Room number is required.")
-    private String room;
+    @NotBlank(message = "Room ID is required.")
+    private String roomId;
     private ChatMessage.MessageType type;
 
     @NotBlank(message = "Message content is required.")

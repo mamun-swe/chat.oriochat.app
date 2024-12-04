@@ -8,6 +8,7 @@ import chat.oriochat.app.utility.Helpers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,11 +34,6 @@ public class RoomService {
         roomRepository.save(room);
     }
 
-    // Get specific room by id
-    public Optional<Room> getRoom(Long id) {
-        return roomRepository.findById(id);
-    }
-
     // Get specific room by name
     public Optional<Room> getRoom(String name) {
         return roomRepository.findByName(name);
@@ -49,11 +45,11 @@ public class RoomService {
     }
 
     // Delete specific room by id
-    public void destroyRoom(Long id) {
-        Optional<Room> room = roomRepository.findById(id);
+    @Transactional
+    public void destroyRoom(String roomId) {
+        Optional<Room> room = roomRepository.findByRoomId(roomId);
         if (room.isPresent()) {
-            roomRepository.deleteById(id);
+            roomRepository.deleteByRoomId(roomId);
         }
-
     }
 }

@@ -43,18 +43,17 @@ public class RoomController {
         return ResponseEntity.ok(new SuccessResponse<>(true, "Successfully room created.", null));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<SuccessResponse<?>> getRoom(@PathVariable Long id) {
-        Optional<Room> availableRoom = roomService.getRoom(id);
+    @GetMapping("/{roomId}")
+    public ResponseEntity<SuccessResponse<?>> getRoom(@PathVariable String roomId) {
+        Optional<Room> availableRoom = roomService.getRoomByRoomId(roomId);
         return ResponseEntity.ok(new SuccessResponse<>(true, "Room information.", availableRoom));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> destroyRoom(@PathVariable Long id) {
-        // If the name already exists, return a custom error response
-        Optional<Room> availableRoom = roomService.getRoom(id);
+    @DeleteMapping("/{roomId}")
+    public ResponseEntity<?> destroyRoom(@PathVariable String roomId) {
+        Optional<Room> availableRoom = roomService.getRoomByRoomId(roomId);
         if (availableRoom.isPresent()) {
-            roomService.destroyRoom(id);
+            roomService.destroyRoom(roomId);
             return ResponseEntity.ok(new SuccessResponse<>(true, "Successfully room deleted.", null));
         }
 

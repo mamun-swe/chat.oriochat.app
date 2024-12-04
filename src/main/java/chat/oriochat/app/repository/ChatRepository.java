@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ChatRepository extends JpaRepository<ChatMessage, Long> {
-    List<ChatMessage> findMessagesByRoom(String room);
+public interface ChatRepository extends JpaRepository<ChatMessage, String> {
+    List<ChatMessage> findMessagesByRoomId(String roomId);
 }

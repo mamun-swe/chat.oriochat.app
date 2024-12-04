@@ -78,7 +78,7 @@ public class SocketIOService {
         }
 
         // Validate the room
-        Map<String, List<String>> roomErrors = chatMessageValidator.validateRoom(messageDTO.getRoom());
+        Map<String, List<String>> roomErrors = chatMessageValidator.validateRoom(messageDTO.getRoomId());
         if (!roomErrors.isEmpty()) {
             ErrorResponse<Map<String, List<String>>> errorResponse = new ErrorResponse<>("Validation errors occurred!", roomErrors);
             client.sendEvent("error", errorResponse);
@@ -86,7 +86,7 @@ public class SocketIOService {
         }
 
         // Successfully joined to the room
-        String roomId = messageDTO.getRoom();
+        String roomId = messageDTO.getRoomId();
         client.joinRoom(roomId);
         log.info("Client {} joined room: {}", client.getSessionId(), roomId);
 
@@ -96,7 +96,7 @@ public class SocketIOService {
             dto.setId(message.getId());
             dto.setSenderId(message.getSenderId());
             dto.setSenderName(message.getSenderName());
-            dto.setRoom(message.getRoom());
+            dto.setRoomId(message.getRoomId());
             dto.setType(message.getType());
             dto.setContent(message.getContent());
             dto.setCreatedAt(message.getCreatedAt());
@@ -110,7 +110,7 @@ public class SocketIOService {
         ChatMessageDTO welcomeMessage = new ChatMessageDTO();
         welcomeMessage.setSenderId(messageDTO.getSenderId());
         welcomeMessage.setSenderName(messageDTO.getSenderName());
-        welcomeMessage.setRoom(roomId);
+        welcomeMessage.setRoomId(roomId);
         welcomeMessage.setType(ChatMessage.MessageType.JOIN);
         welcomeMessage.setContent("Welcome to room! Enjoy the chat.");
         welcomeMessage.setCreatedAt(LocalDateTime.now());
@@ -124,7 +124,7 @@ public class SocketIOService {
         ChatMessageDTO notifyMessage = new ChatMessageDTO();
         notifyMessage.setSenderId(messageDTO.getSenderId());
         notifyMessage.setSenderName(messageDTO.getSenderName());
-        notifyMessage.setRoom(roomId);
+        notifyMessage.setRoomId(roomId);
         notifyMessage.setType(ChatMessage.MessageType.JOIN);
         notifyMessage.setContent(messageDTO.getSenderName() + " has joined the room!");
         notifyMessage.setCreatedAt(LocalDateTime.now());
@@ -150,7 +150,7 @@ public class SocketIOService {
         }
 
         // Validate the room
-        Map<String, List<String>> roomErrors = chatMessageValidator.validateRoom(messageDTO.getRoom());
+        Map<String, List<String>> roomErrors = chatMessageValidator.validateRoom(messageDTO.getRoomId());
         if (!roomErrors.isEmpty()) {
             ErrorResponse<Map<String, List<String>>> errorResponse = new ErrorResponse<>("Validation errors occurred!", roomErrors);
             client.sendEvent("error", errorResponse);
@@ -158,7 +158,7 @@ public class SocketIOService {
         }
 
         // Successfully leave from the room
-        String roomId = messageDTO.getRoom();
+        String roomId = messageDTO.getRoomId();
         client.leaveRoom(roomId);
         log.info("Client {} leaved room: {}", client.getSessionId(), roomId);
 
@@ -166,7 +166,7 @@ public class SocketIOService {
         ChatMessageDTO notifyMessage = new ChatMessageDTO();
         notifyMessage.setSenderId(messageDTO.getSenderId());
         notifyMessage.setSenderName(messageDTO.getSenderName());
-        notifyMessage.setRoom(roomId);
+        notifyMessage.setRoomId(roomId);
         notifyMessage.setType(ChatMessage.MessageType.LEAVE);
         notifyMessage.setContent(messageDTO.getSenderName() + " has leave the room!");
         notifyMessage.setCreatedAt(LocalDateTime.now());
@@ -194,7 +194,7 @@ public class SocketIOService {
         }
 
         // Validate the room
-        Map<String, List<String>> roomErrors = chatMessageValidator.validateRoom(messageDTO.getRoom());
+        Map<String, List<String>> roomErrors = chatMessageValidator.validateRoom(messageDTO.getRoomId());
         if (!roomErrors.isEmpty()) {
             ErrorResponse<Map<String, List<String>>> errorResponse = new ErrorResponse<>("Validation errors occurred!", roomErrors);
             client.sendEvent("error", errorResponse);
@@ -202,13 +202,13 @@ public class SocketIOService {
         }
 
         // Successfully send message to the room
-        String roomId = messageDTO.getRoom();
+        String roomId = messageDTO.getRoomId();
 
         // Notify other clients in the room that a new user has joined exclude new joiner
         ChatMessageDTO message = new ChatMessageDTO();
         message.setSenderId(messageDTO.getSenderId());
         message.setSenderName(messageDTO.getSenderName());
-        message.setRoom(roomId);
+        message.setRoomId(roomId);
         message.setType(ChatMessage.MessageType.CHAT);
         message.setContent(messageDTO.getContent());
         message.setCreatedAt(LocalDateTime.now());

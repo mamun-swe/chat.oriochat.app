@@ -35,6 +35,7 @@ services:
       retries: 10
       interval: 3s
       timeout: 30s
+
 volumes:
   spring-chat-service-data:
 networks:

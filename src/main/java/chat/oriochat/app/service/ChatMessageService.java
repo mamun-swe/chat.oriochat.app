@@ -16,7 +16,7 @@ public class ChatMessageService {
 
     // Get list of messages
     public List<ChatMessage> getMessages(String room) {
-        return chatRepository.findMessagesByRoom(room);
+        return chatRepository.findMessagesByRoomId(room);
     }
 
     // Create a new message
@@ -25,7 +25,7 @@ public class ChatMessageService {
         message.setType(ChatMessage.MessageType.CHAT);
         message.setSenderId(chatMessageDTO.getSenderId());
         message.setSenderName(chatMessageDTO.getSenderName());
-        message.setRoom(chatMessageDTO.getRoom());
+        message.setRoomId(chatMessageDTO.getRoomId());
         message.setContent(chatMessageDTO.getContent());
         chatRepository.save(message);
     }
