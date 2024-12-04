@@ -25,12 +25,12 @@ public class WebConfig {
     }
 
     // Filter registration for JWT token validation
-    // @Bean
-    // public FilterRegistrationBean<JwtTokenFilter> filterFilterRegistration() {
-    //     FilterRegistrationBean<JwtTokenFilter> registrationBean = new FilterRegistrationBean<>();
-    //     registrationBean.setFilter(new JwtTokenFilter());
-    //     registrationBean.addUrlPatterns("/api/v1/*");
-    //     registrationBean.setOrder(1);
-    //     return registrationBean;
-    // }
+    @Bean
+    public FilterRegistrationBean<JwtTokenFilter> filterFilterRegistration() {
+        FilterRegistrationBean<JwtTokenFilter> registrationBean = new FilterRegistrationBean<>();
+        registrationBean.setFilter(new JwtTokenFilter());
+        registrationBean.addUrlPatterns("/api/v1/*");
+        registrationBean.setOrder(1);
+        return registrationBean;
+    }
 }

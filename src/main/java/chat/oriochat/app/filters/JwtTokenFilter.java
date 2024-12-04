@@ -22,10 +22,10 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String token = request.getHeader(AUTHORIZATION_HEADER);
 
-        // if (token == null || !token.startsWith(BEARER_PREFIX)) {
-        //     sendErrorResponse(response, HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized.", "Access token isn't available.");
-        //     return;
-        // }
+        if (token == null || !token.startsWith(BEARER_PREFIX)) {
+            sendErrorResponse(response, HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized.", "Access token isn't available.");
+            return;
+        }
 
         filterChain.doFilter(request, response);
     }
