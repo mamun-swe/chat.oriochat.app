@@ -1,4 +1,5 @@
 /home/xero/Documents/oriochat/chat.oriochat.app/src/main/java/chat/oriochat/app/Application.java
+/home/xero/Documents/oriochat/chat.oriochat.app/src/main/java/chat/oriochat/app/config/SecurityConfig.java
 /home/xero/Documents/oriochat/chat.oriochat.app/src/main/java/chat/oriochat/app/config/SocketIOConfig.java
 /home/xero/Documents/oriochat/chat.oriochat.app/src/main/java/chat/oriochat/app/config/WebConfig.java
 /home/xero/Documents/oriochat/chat.oriochat.app/src/main/java/chat/oriochat/app/controller/RoomController.java
@@ -8,6 +9,8 @@
 /home/xero/Documents/oriochat/chat.oriochat.app/src/main/java/chat/oriochat/app/dto/SuccessResponse.java
 /home/xero/Documents/oriochat/chat.oriochat.app/src/main/java/chat/oriochat/app/exception/ChatMessageValidator.java
 /home/xero/Documents/oriochat/chat.oriochat.app/src/main/java/chat/oriochat/app/exception/GlobalExceptionHandler.java
+/home/xero/Documents/oriochat/chat.oriochat.app/src/main/java/chat/oriochat/app/filters/JwtPermissionFilter.java
+/home/xero/Documents/oriochat/chat.oriochat.app/src/main/java/chat/oriochat/app/interceptors/AuthInterceptor.java
 /home/xero/Documents/oriochat/chat.oriochat.app/src/main/java/chat/oriochat/app/model/ChatMessage.java
 /home/xero/Documents/oriochat/chat.oriochat.app/src/main/java/chat/oriochat/app/model/Room.java
 /home/xero/Documents/oriochat/chat.oriochat.app/src/main/java/chat/oriochat/app/repository/ChatRepository.java

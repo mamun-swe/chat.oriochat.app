@@ -1,10 +1,13 @@
+chat/oriochat/app/interceptors/AuthInterceptor.class
 chat/oriochat/app/dto/ErrorResponse.class
 chat/oriochat/app/service/ChatMessageService.class
 chat/oriochat/app/service/RoomService.class
 chat/oriochat/app/repository/ChatRepository.class
 chat/oriochat/app/dto/SuccessResponse.class
 chat/oriochat/app/config/SocketIOConfig.class
+chat/oriochat/app/filters/JwtPermissionFilter.class
 chat/oriochat/app/repository/RoomRepository.class
+chat/oriochat/app/config/SecurityConfig.class
 chat/oriochat/app/service/SocketIOService.class
 chat/oriochat/app/utility/Helpers.class
 chat/oriochat/app/model/Room.class
